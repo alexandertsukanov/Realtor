@@ -8,14 +8,14 @@ import java.sql.Time;
  */
 @Entity
 @Table(name = "visitors", schema = "realtor", catalog = "postgres")
-public class EntityVisitors {
+public class Visitors {
     private long id;
     private String firstName;
     private String secondName;
     private String middleName;
     private long reservedProperty;
     private Time reservedTime;
-    private EntityProperties propertiesByReservedProperty;
+    private Properties propertiesByReservedProperty;
 
     @Id
     @Column(name = "id")
@@ -82,7 +82,7 @@ public class EntityVisitors {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EntityVisitors that = (EntityVisitors) o;
+        Visitors that = (Visitors) o;
 
         if (id != that.id) return false;
         if (reservedProperty != that.reservedProperty) return false;
@@ -106,12 +106,12 @@ public class EntityVisitors {
     }
 
     @ManyToOne
-    @JoinColumn(name = "reserved_property", referencedColumnName = "id", nullable = false)
-    public EntityProperties getPropertiesByReservedProperty() {
+    @JoinColumn(name = "reserved_property", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Properties getPropertiesByReservedProperty() {
         return propertiesByReservedProperty;
     }
 
-    public void setPropertiesByReservedProperty(EntityProperties propertiesByReservedProperty) {
+    public void setPropertiesByReservedProperty(Properties propertiesByReservedProperty) {
         this.propertiesByReservedProperty = propertiesByReservedProperty;
     }
 }

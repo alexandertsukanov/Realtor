@@ -1,0 +1,72 @@
+.menu li {
+
+    margin-right: 5%;
+    list-style-type: none;
+    font-size: 1.2em;
+
+}
+
+.reservation form {
+
+    background-color: white;
+    padding: 30px;
+    border: 1px solid black;
+    margin: 10% auto;
+    width: 300px;
+
+}
+
+.reservation form input {
+
+    font-size: 20px;
+    width: 300px;
+    height: 30px;
+
+}
+
+.reservation form p {
+
+    background-color: white;
+
+}
+
+.propertylist {
+    margin: 0 auto;
+    font-size: 20px;
+    border: 3px solid black;
+    border-radius: 5px;
+
+}
+
+.propertylist li {
+
+    list-style-type: none;
+
+}
+
+.button {
+
+    float: right;
+    border: 2px solid black;
+    font-size: 25px;
+    border-radius: 5px;
+    background-color: greenyellow;
+}
+
+a {
+
+    text-decoration: none;
+
+}
+
+* {
+
+    background-color: ghostwhite;
+
+}
+
+h2 {
+
+    text-align: center;
+
+}

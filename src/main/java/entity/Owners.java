@@ -8,11 +8,11 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "owners", schema = "realtor", catalog = "postgres")
-public class EntityOwners {
+public class Owners {
     private long id;
     private String firstName;
     private String secondName;
-    private Collection<EntityProperties> propertiesById;
+    private Collection<Properties> propertiesById;
 
     @Id
     @Column(name = "id")
@@ -49,7 +49,7 @@ public class EntityOwners {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EntityOwners that = (EntityOwners) o;
+        Owners that = (Owners) o;
 
         if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
@@ -67,11 +67,11 @@ public class EntityOwners {
     }
 
     @OneToMany(mappedBy = "ownersByOwnerId")
-    public Collection<EntityProperties> getPropertiesById() {
+    public Collection<Properties> getPropertiesById() {
         return propertiesById;
     }
 
-    public void setPropertiesById(Collection<EntityProperties> propertiesById) {
+    public void setPropertiesById(Collection<Properties> propertiesById) {
         this.propertiesById = propertiesById;
     }
 }

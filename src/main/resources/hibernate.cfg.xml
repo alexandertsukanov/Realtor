@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
-    <mapping class="entity.EntityOwners"/>
+    <mapping class="entity.Owners"/>
     <mapping class="entity.EntityProperties"/>
     <mapping class="entity.EntityVisitors"/>
     <!-- DB schema will be updated if needed -->

@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -8,12 +9,12 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "properties", schema = "realtor", catalog = "postgres")
-public class EntityProperties {
+public class Properties implements Serializable {
     private long id;
     private long ownerId;
     private String name;
-    private EntityOwners ownersByOwnerId;
-    private Collection<EntityVisitors> visitorsesById;
+    private Owners ownersByOwnerId;
+    private Collection<Visitors> visitorsesById;
 
     @Id
     @Column(name = "id")
@@ -50,7 +51,7 @@ public class EntityProperties {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EntityProperties that = (EntityProperties) o;
+        Properties that = (Properties) o;
 
         if (id != that.id) return false;
         if (ownerId != that.ownerId) return false;
@@ -68,21 +69,21 @@ public class EntityProperties {
     }
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
-    public EntityOwners getOwnersByOwnerId() {
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Owners getOwnersByOwnerId() {
         return ownersByOwnerId;
     }
 
-    public void setOwnersByOwnerId(EntityOwners ownersByOwnerId) {
+    public void setOwnersByOwnerId(Owners ownersByOwnerId) {
         this.ownersByOwnerId = ownersByOwnerId;
     }
 
     @OneToMany(mappedBy = "propertiesByReservedProperty")
-    public Collection<EntityVisitors> getVisitorsesById() {
+    public Collection<Visitors> getVisitorsesById() {
         return visitorsesById;
     }
 
-    public void setVisitorsesById(Collection<EntityVisitors> visitorsesById) {
+    public void setVisitorsesById(Collection<Visitors> visitorsesById) {
         this.visitorsesById = visitorsesById;
     }
 }
