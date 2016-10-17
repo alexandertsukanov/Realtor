@@ -1,3 +1,15 @@
+.error {
+
+    color: red;
+
+}
+
+.success {
+
+    color: green;
+
+}
+
 .menu li {
 
     margin-right: 5%;
@@ -11,8 +23,15 @@
     background-color: white;
     padding: 30px;
     border: 1px solid black;
-    margin: 10% auto;
+    margin: 2% auto;
     width: 300px;
+
+}
+
+.reservationlist {
+
+    text-align: center;
+    margin: 0 auto;
 
 }
 
@@ -21,6 +40,7 @@
     font-size: 20px;
     width: 300px;
     height: 30px;
+    margin-bottom: 20px;
 
 }
 
@@ -31,7 +51,7 @@
 }
 
 .propertylist {
-    margin: 0 auto;
+    margin: 15px auto;
     font-size: 20px;
     border: 3px solid black;
     border-radius: 5px;

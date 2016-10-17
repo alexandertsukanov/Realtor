@@ -10,4 +10,5 @@ public interface PropertiesRepository extends JpaRepository<Properties, Long> {
 
     List<Properties> findAll(Sort sort);
     Properties findByOwnerId(Long id);
+
 }

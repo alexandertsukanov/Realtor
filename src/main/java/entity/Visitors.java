@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.sql.Time;
 
 /**
@@ -13,11 +14,14 @@ public class Visitors {
     private String firstName;
     private String secondName;
     private String middleName;
+    private String phone;
     private long reservedProperty;
-    private Time reservedTime;
+    private Date reservedDate;
     private Properties propertiesByReservedProperty;
 
     @Id
+    @SequenceGenerator(name = "visitors_id_seq", sequenceName = "visitors_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "visitors_id_seq")
     @Column(name = "id")
     public long getId() {
         return id;
@@ -58,6 +62,16 @@ public class Visitors {
     }
 
     @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Basic
     @Column(name = "reserved_property")
     public long getReservedProperty() {
         return reservedProperty;
@@ -68,13 +82,13 @@ public class Visitors {
     }
 
     @Basic
-    @Column(name = "reserved_time")
-    public Time getReservedTime() {
-        return reservedTime;
+    @Column(name = "reserved_date")
+    public Date getReservedDate() {
+        return reservedDate;
     }
 
-    public void setReservedTime(Time reservedTime) {
-        this.reservedTime = reservedTime;
+    public void setReservedDate(Date reservedDate) {
+        this.reservedDate = reservedDate;
     }
 
     @Override
@@ -89,7 +103,7 @@ public class Visitors {
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (secondName != null ? !secondName.equals(that.secondName) : that.secondName != null) return false;
         if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
-        if (reservedTime != null ? !reservedTime.equals(that.reservedTime) : that.reservedTime != null) return false;
+        if (reservedDate != null ? !reservedDate.equals(that.reservedDate) : that.reservedDate != null) return false;
 
         return true;
     }
@@ -101,7 +115,7 @@ public class Visitors {
         result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
         result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
         result = 31 * result + (int) (reservedProperty ^ (reservedProperty >>> 32));
-        result = 31 * result + (reservedTime != null ? reservedTime.hashCode() : 0);
+        result = 31 * result + (reservedDate != null ? reservedDate.hashCode() : 0);
         return result;
     }
 
