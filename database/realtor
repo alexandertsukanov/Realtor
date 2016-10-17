@@ -1,0 +1,267 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
+
+-- Started on 2016-10-17 20:28:48 EEST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 9 (class 2615 OID 16393)
+-- Name: realtor; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA realtor;
+
+
+ALTER SCHEMA realtor OWNER TO postgres;
+
+SET search_path = realtor, pg_catalog;
+
+--
+-- TOC entry 183 (class 1259 OID 16394)
+-- Name: owners_id_seq; Type: SEQUENCE; Schema: realtor; Owner: postgres
+--
+
+CREATE SEQUENCE owners_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE owners_id_seq OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 184 (class 1259 OID 16396)
+-- Name: owners; Type: TABLE; Schema: realtor; Owner: postgres
+--
+
+CREATE TABLE owners (
+    id bigint DEFAULT nextval('owners_id_seq'::regclass) NOT NULL,
+    first_name character varying(50) NOT NULL,
+    second_name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE owners OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 16400)
+-- Name: properties_id_seq; Type: SEQUENCE; Schema: realtor; Owner: postgres
+--
+
+CREATE SEQUENCE properties_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE properties_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 16402)
+-- Name: properties; Type: TABLE; Schema: realtor; Owner: postgres
+--
+
+CREATE TABLE properties (
+    id bigint DEFAULT nextval('properties_id_seq'::regclass) NOT NULL,
+    owner_id bigint NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE properties OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16406)
+-- Name: visitors_id_seq; Type: SEQUENCE; Schema: realtor; Owner: postgres
+--
+
+CREATE SEQUENCE visitors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE visitors_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 16408)
+-- Name: visitors; Type: TABLE; Schema: realtor; Owner: postgres
+--
+
+CREATE TABLE visitors (
+    id bigint DEFAULT nextval('visitors_id_seq'::regclass) NOT NULL,
+    first_name character varying(50) NOT NULL,
+    second_name character varying(50) NOT NULL,
+    middle_name character varying(50) NOT NULL,
+    reserved_property bigint,
+    phone character varying(50),
+    reserved_date timestamp without time zone
+);
+
+
+ALTER TABLE visitors OWNER TO postgres;
+
+--
+-- TOC entry 2391 (class 0 OID 16396)
+-- Dependencies: 184
+-- Data for Name: owners; Type: TABLE DATA; Schema: realtor; Owner: postgres
+--
+
+COPY owners (id, first_name, second_name) FROM stdin;
+1	Ivan	Petrov
+2	Alex	Johnson
+\.
+
+
+--
+-- TOC entry 2400 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: owners_id_seq; Type: SEQUENCE SET; Schema: realtor; Owner: postgres
+--
+
+SELECT pg_catalog.setval('owners_id_seq', 1, true);
+
+
+--
+-- TOC entry 2393 (class 0 OID 16402)
+-- Dependencies: 186
+-- Data for Name: properties; Type: TABLE DATA; Schema: realtor; Owner: postgres
+--
+
+COPY properties (id, owner_id, name) FROM stdin;
+1	1	Estate
+2	2	Mansion
+\.
+
+
+--
+-- TOC entry 2401 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: properties_id_seq; Type: SEQUENCE SET; Schema: realtor; Owner: postgres
+--
+
+SELECT pg_catalog.setval('properties_id_seq', 1, false);
+
+
+--
+-- TOC entry 2395 (class 0 OID 16408)
+-- Dependencies: 188
+-- Data for Name: visitors; Type: TABLE DATA; Schema: realtor; Owner: postgres
+--
+
+COPY visitors (id, first_name, second_name, middle_name, reserved_property, phone, reserved_date) FROM stdin;
+123	ASd	sadsad	sadsad	1		1220-12-12 12:00:00
+128	sadads	sadasd	asdsadsa	1	23432423	1221-01-12 12:00:00
+131	Adkjdlajdsl	alsjdalsjdadjl	fsaljfldsjfkld	1	332423422	1220-12-13 12:00:00
+132	Alex	sdasdas	assa;md	2	32432924892	1222-10-12 12:00:00
+136	Alex	sadasas	asdsa	1	32324324	1221-01-22 12:00:00
+121	Charlotte	Klein	ÐÐ»ÐµÐ³Ð¾Ð²Ð¸Ñ	1		1221-12-12 12:00:00
+\.
+
+
+--
+-- TOC entry 2402 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: visitors_id_seq; Type: SEQUENCE SET; Schema: realtor; Owner: postgres
+--
+
+SELECT pg_catalog.setval('visitors_id_seq', 136, true);
+
+
+--
+-- TOC entry 2265 (class 2606 OID 16413)
+-- Name: owners_pkey; Type: CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY owners
+    ADD CONSTRAINT owners_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2268 (class 2606 OID 16415)
+-- Name: properties_pkey; Type: CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY properties
+    ADD CONSTRAINT properties_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2271 (class 2606 OID 32784)
+-- Name: unique_date; Type: CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY visitors
+    ADD CONSTRAINT unique_date UNIQUE (reserved_date);
+
+
+--
+-- TOC entry 2273 (class 2606 OID 16417)
+-- Name: visitors_pkey; Type: CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY visitors
+    ADD CONSTRAINT visitors_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2266 (class 1259 OID 16418)
+-- Name: fki_properties_fkey; Type: INDEX; Schema: realtor; Owner: postgres
+--
+
+CREATE INDEX fki_properties_fkey ON properties USING btree (owner_id);
+
+
+--
+-- TOC entry 2269 (class 1259 OID 16419)
+-- Name: fki_visitors_property_fkey; Type: INDEX; Schema: realtor; Owner: postgres
+--
+
+CREATE INDEX fki_visitors_property_fkey ON visitors USING btree (reserved_property);
+
+
+--
+-- TOC entry 2274 (class 2606 OID 16420)
+-- Name: properties_owners_fkey; Type: FK CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY properties
+    ADD CONSTRAINT properties_owners_fkey FOREIGN KEY (owner_id) REFERENCES owners(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2275 (class 2606 OID 16425)
+-- Name: visitors_property_fkey; Type: FK CONSTRAINT; Schema: realtor; Owner: postgres
+--
+
+ALTER TABLE ONLY visitors
+    ADD CONSTRAINT visitors_property_fkey FOREIGN KEY (reserved_property) REFERENCES properties(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2016-10-17 20:28:49 EEST
+
+--
+-- PostgreSQL database dump complete
+--
+
