@@ -1,16 +1,11 @@
 package form;
 
 import entity.Properties;
-import entity.Visitors;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
-
 import java.util.Date;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Time;
 
 /**
  * Created by alex on 10/16/16.
@@ -33,7 +28,7 @@ public class ReservationForm {
     private String phone;
     private long reservedProperty;
     @NotNull
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date reservedDate;
     private Properties propertiesByReservedProperty;
 

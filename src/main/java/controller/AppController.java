@@ -1,6 +1,5 @@
 package controller;
 
-
 import entity.Visitors;
 import form.ReservationForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import repository.OwnersRepository;
 import repository.PropertiesRepository;
 import repository.VisitorsRepository;
-
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 @Controller
 public class AppController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:MM");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         binder.registerCustomEditor(Date.class, "reservedDate", new CustomDateEditor(sdf, true));
 
     }

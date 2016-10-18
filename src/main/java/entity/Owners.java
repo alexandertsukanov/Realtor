@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Collection;
-
 /**
  * Created by alex on 10/15/16.
  */

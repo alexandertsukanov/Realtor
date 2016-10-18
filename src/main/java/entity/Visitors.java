@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.sql.Time;
 
 /**
  * Created by alex on 10/15/16.
