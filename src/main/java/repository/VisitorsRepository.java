@@ -19,8 +19,4 @@ public interface VisitorsRepository extends JpaRepository<Visitors, Long> {
 
     Visitors findByReservedDate(Date date);
 
-//    @Query("SELECT reservedDate FROM Visitors where reservedDate  = :reservedDate")
-//    String findDate(@Param("reservedDate") Date date);
-
-
 }
